@@ -1,0 +1,36 @@
+<div class="scores-container">
+  <h2>My Scores</h2>
+
+  <div class="add-score-form">
+    <h3>Add a New Score</h3>
+    <form [formGroup]="scoreForm" (ngSubmit)="addScore()">
+      <input type="number" formControlName="value" placeholder="Enter score value">
+      <button type="submit" [disabled]="scoreForm.invalid">Add Score</button>
+    </form>
+  </div>
+
+  <div class="scores-list">
+    <ng-container *ngIf="scores$ | async as scores; else loading">
+      <div *ngIf="scores.length > 0; else noScores" class="scores-table">
+        <div class="table-header">
+          <div>Score Value</div>
+          <div>Date Recorded</div>
+          <div>Actions</div>
+        </div>
+        <div *ngFor="let score of scores" class="table-row">
+          <div>{{ score.value }}</div>
+          <div>{{ score.dateRecorded | date: 'medium' }}</div>
+          <div>
+            <button class="btn-delete" (click)="deleteScore(score.id)">Delete</button>
+          </div>
+        </div>
+      </div>
+      <ng-template #noScores>
+        <p>You haven't recorded any scores yet.</p>
+      </ng-template>
+    </ng-container>
+    <ng-template #loading>
+      <p>Loading scores...</p>
+    </ng-template>
+  </div>
+</div>
