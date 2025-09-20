@@ -1,0 +1,22 @@
+<div class="login-container">
+  <div class="login-box">
+    <h2>Login to ScoreTracker</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div class="separator">OR</div>
+    <button (click)="loginWithGoogle()" class="btn btn-google">Login with Google</button>
+    <button (click)="loginWithMicrosoft()" class="btn btn-microsoft">Login with Microsoft</button>
+  </div>
+</div>
