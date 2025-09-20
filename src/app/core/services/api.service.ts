@@ -22,4 +22,7 @@ export class ApiService {
   get<T>(path: string) {
     return this.http.get<T>(`${environment.apiUrl}${path}`, { withCredentials: true });
   }
+    delete<T>(path: string) {
+    return this.http.delete<T>(`${environment.apiUrl}${path}`, { withCredentials: true });
+  }
 }
