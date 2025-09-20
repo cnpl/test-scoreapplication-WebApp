@@ -1,0 +1,26 @@
+<div class="admin-container">
+  <h2>User Management</h2>
+  <div class="users-list">
+    <ng-container *ngIf="users$ | async as users; else loading">
+      <div class="users-table">
+        <div class="table-header">
+          <div>Full Name</div>
+          <div>Email</div>
+          <div>Roles</div>
+          <div>Actions</div>
+        </div>
+        <div *ngFor="let user of users" class="table-row">
+          <div>{{ user.fullName }}</div>
+          <div>{{ user.email }}</div>
+          <div>{{ user.roles.join(', ') }}</div>
+          <div>
+            <a [routerLink]="['/admin/user-scores', user.id]" class="btn-view">View Scores</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #loading>
+      <p>Loading users...</p>
+    </ng-template>
+  </div>
+</div>
