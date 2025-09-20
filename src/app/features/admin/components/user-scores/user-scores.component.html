@@ -1,0 +1,21 @@
+<div class="admin-container">
+  <h2>Scores for User</h2>
+  <a routerLink="/admin"> &larr; Back to User List</a>
+  
+  <div class="scores-list" style="margin-top: 1rem;">
+    <ng-container *ngIf="scores$ | async as scores; else loading">
+      <div *ngIf="scores.length > 0; else noScores" class="scores-table">
+         <div class="table-header">
+          <div>Score Value</div>
+          <div>Date Recorded</div>
+        </div>
+        <div *ngFor="let score of scores" class="table-row">
+          <div>{{ score.value }}</div>
+          <div>{{ score.dateRecorded | date: 'medium' }}</div>
+        </div>
+      </div>
+       <ng-template #noScores><p>This user has no scores.</p></ng-template>
+    </ng-container>
+    <ng-template #loading><p>Loading scores...</p></ng-template>
+  </div>
+</div>
