@@ -1,0 +1,13 @@
+<header class="main-header" *ngIf="isAuthenticated$ | async">
+  <nav class="navbar">
+    <h1>ScoreTracker</h1>
+    <div class="user-info" *ngIf="currentUser$ | async as user">
+      <span>Welcome, {{ user.fullName }}</span>
+      <button (click)="logout()" class="btn-logout">Logout</button>
+    </div>
+  </nav>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
